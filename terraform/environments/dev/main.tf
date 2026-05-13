@@ -44,3 +44,18 @@ module "budget_guardrails" {
   # AWS Budgets itself does not support resource tags.
   tags = module.tagging_standards.merged_tags
 }
+
+
+module "aws_scp_guardrails" {
+  source = "../../modules/aws-scp-guardrails"
+
+  project     = "SAMSON"
+  environment = "dev"
+
+  target_id = module.aws_organizations_core.sandbox_ou_id
+
+  approved_regions = [
+    "us-east-1",
+    "us-east-2"
+  ]
+}
