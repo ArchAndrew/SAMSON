@@ -66,3 +66,52 @@ module "aws_scp_validation" {
   project     = "SAMSON"
   environment = "dev"
 }
+
+module "aws_policy_simulator" {
+  source = "../../modules/aws-policy-simulator"
+
+  project           = "SAMSON"
+  environment       = "dev"
+  approved_region   = "us-east-1"
+  unapproved_region = "us-west-1"
+}
+
+module "compliance_mapping" {
+  source = "../../modules/compliance-mapping"
+
+  project     = "SAMSON"
+  environment = "dev"
+}
+
+module "recovery_artifacts" {
+  source = "../../modules/recovery-artifacts"
+
+  project           = "SAMSON"
+  environment       = "dev"
+  state_bucket_name = "samson-terraform-state-14412"
+}
+
+module "dr_pilot_light" {
+  source = "../../modules/dr-pilot-light"
+
+  project         = "SAMSON"
+  environment     = "dev"
+  primary_region  = "us-east-1"
+  recovery_region = "us-east-2"
+}
+
+module "aws_cross_region_replication" {
+  source = "../../modules/aws-cross-region-replication"
+
+  providers = {
+    aws         = aws
+    aws.replica = aws.replica
+  }
+
+  project             = "SAMSON"
+  environment         = "dev"
+  primary_bucket_name = "samson-evidence-primary-14412"
+  replica_bucket_name = "samson-evidence-replica-14412"
+
+  tags = module.tagging_standards.merged_tags
+}
