@@ -59,3 +59,10 @@ module "aws_scp_guardrails" {
     "us-east-2"
   ]
 }
+
+module "aws_scp_validation" {
+  source = "../../modules/aws-scp-validation"
+
+  project     = "SAMSON"
+  environment = "dev"
+}
