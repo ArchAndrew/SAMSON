@@ -67,3 +67,8 @@ output "replication_role_arn" {
   description = "IAM role used for evidence replication."
   value       = module.aws_cross_region_replication.replication_role_arn
 }
+
+output "security_evidence_metadata" {
+  description = "SAMSON security evidence repository metadata."
+  value       = module.security_evidence.evidence_metadata
+}

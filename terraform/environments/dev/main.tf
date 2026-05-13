@@ -115,3 +115,20 @@ module "aws_cross_region_replication" {
 
   tags = module.tagging_standards.merged_tags
 }
+
+module "security_evidence" {
+  source = "../../modules/security-evidence"
+
+  project     = "SAMSON"
+  environment = "dev"
+
+  primary_bucket_name = module.aws_cross_region_replication.primary_evidence_bucket_name
+  replica_bucket_name = module.aws_cross_region_replication.replica_evidence_bucket_name
+
+  retention_days = 365
+  dr_strategy    = "Pilot Light"
+  rpo_minutes    = 15
+  rto_hours      = 4
+
+  tags = module.tagging_standards.merged_tags
+}
