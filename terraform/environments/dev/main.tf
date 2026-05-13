@@ -18,3 +18,29 @@ module "backend_bootstrap" {
 
   tags = module.tagging_standards.merged_tags
 }
+
+module "budget_guardrails" {
+  source = "../../modules/budget-guardrails"
+
+  project     = "SAMSON"
+  environment = "dev"
+
+  monthly_budget_limit = 120
+
+  # 100% of $120 = $120 actual spend alert
+  actual_threshold = 100
+
+  # 125% of $120 = $150 forecast alert
+  forecast_threshold = 125
+
+  # 146% of $120 ≈ $175 forecast emergency alert
+  emergency_threshold = 146
+
+  notification_emails = [
+    "andrew@strongtowersecurity.io"
+  ]
+
+  # Included for interface consistency across modules.
+  # AWS Budgets itself does not support resource tags.
+  tags = module.tagging_standards.merged_tags
+}
