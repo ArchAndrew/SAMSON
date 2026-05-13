@@ -72,3 +72,18 @@ output "security_evidence_metadata" {
   description = "SAMSON security evidence repository metadata."
   value       = module.security_evidence.evidence_metadata
 }
+
+output "identity_cloudtrail_name" {
+  description = "SAMSON identity CloudTrail name."
+  value       = module.aws_identity_telemetry.cloudtrail_name
+}
+
+output "identity_log_group_name" {
+  description = "SAMSON identity CloudWatch Log Group name."
+  value       = module.aws_identity_telemetry.cloudwatch_log_group_name
+}
+
+output "access_analyzer_name" {
+  description = "SAMSON IAM Access Analyzer name."
+  value       = module.aws_identity_telemetry.access_analyzer_name
+}

@@ -132,3 +132,14 @@ module "security_evidence" {
 
   tags = module.tagging_standards.merged_tags
 }
+
+module "aws_identity_telemetry" {
+  source = "../../modules/aws-identity-telemetry"
+
+  project              = "SAMSON"
+  environment          = "dev"
+  evidence_bucket_name = module.aws_cross_region_replication.primary_evidence_bucket_name
+  log_retention_days   = 14
+
+  tags = module.tagging_standards.merged_tags
+}
