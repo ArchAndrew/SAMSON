@@ -1,3 +1,4 @@
+######AWS#######
 module "aws_organizations_core" {
   source = "../../modules/aws-organizations-core"
 }
@@ -240,9 +241,30 @@ module "aws_systems_manager" {
   tags = module.tagging_standards.merged_tags
 }
 
+######AZURE#######
+
 module "azure_management_groups" {
   source = "../../modules/azure-management-groups"
 
   project     = "SAMSON"
   environment = "dev"
+}
+
+
+module "azure_subscription_governance" {
+  source = "../../modules/azure-subscription-governance"
+
+  subscription_id              = var.azure_subscription_id
+  security_management_group_id = module.azure_management_groups.security_management_group_id
+}
+
+module "azure_policy_guardrails" {
+  source = "../../modules/azure-policy-guardrails"
+
+  project             = "SAMSON"
+  environment         = "dev"
+  management_group_id = module.azure_management_groups.security_management_group_id
+
+  allowed_locations = ["eastus", "eastus2"]
+  required_tags     = ["Environment", "Project", "Owner"]
 }

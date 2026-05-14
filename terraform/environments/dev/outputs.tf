@@ -168,3 +168,19 @@ output "azure_workloads_management_group_id" {
 output "azure_sandbox_management_group_id" {
   value = module.azure_management_groups.sandbox_management_group_id
 }
+
+output "azure_subscription_association_id" {
+  value = module.azure_subscription_governance.subscription_association_id
+}
+
+output "azure_required_tags_policy_id" {
+  value = module.azure_policy_guardrails.required_tags_policy_id
+}
+
+output "azure_policy_guardrails_initiative_id" {
+  value = module.azure_policy_guardrails.policy_guardrails_initiative_id
+}
+
+output "azure_policy_guardrails_assignment_id" {
+  value = module.azure_policy_guardrails.policy_guardrails_assignment_id
+}

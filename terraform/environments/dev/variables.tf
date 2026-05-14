@@ -26,3 +26,11 @@ variable "splunk_hec_token_parameter_arn" {
   type        = string
   sensitive   = true
 }
+
+
+variable "azure_subscription_id" {
+  description = "Azure subscription ID."
+  type        = string
+}
+
+
