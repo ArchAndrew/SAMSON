@@ -143,3 +143,69 @@ module "aws_identity_telemetry" {
 
   tags = module.tagging_standards.merged_tags
 }
+
+module "aws_eventbridge_core" {
+  source = "../../modules/aws-eventbridge-core"
+
+  project     = "SAMSON"
+  environment = "dev"
+
+  tags = module.tagging_standards.merged_tags
+}
+
+module "aws_lambda_normalizer" {
+  source = "../../modules/aws-lambda-normalizer"
+
+  project     = "SAMSON"
+  environment = "dev"
+
+  lambda_source_dir = "../../../src/normalizer"
+
+  evidence_bucket_name = module.aws_cross_region_replication.primary_evidence_bucket_name
+  evidence_bucket_arn  = module.aws_cross_region_replication.primary_evidence_bucket_arn
+
+  event_bus_name = module.aws_eventbridge_core.event_bus_name
+  event_bus_arn  = module.aws_eventbridge_core.event_bus_arn
+
+  tags = module.tagging_standards.merged_tags
+}
+
+module "aws_risk_engine" {
+  source = "../../modules/aws-risk-engine"
+
+  project     = "SAMSON"
+  environment = "dev"
+
+  lambda_source_dir = "../../../src/risk-engine"
+
+  evidence_bucket_name = module.aws_cross_region_replication.primary_evidence_bucket_name
+  evidence_bucket_arn  = module.aws_cross_region_replication.primary_evidence_bucket_arn
+
+  event_bus_name = module.aws_eventbridge_core.event_bus_name
+  event_bus_arn  = module.aws_eventbridge_core.event_bus_arn
+
+  tags = module.tagging_standards.merged_tags
+}
+
+module "aws_response_workflows" {
+  source = "../../modules/aws-response-workflows"
+
+  project     = "SAMSON"
+  environment = "dev"
+
+  lambda_source_dir = "../../../src/response-engine"
+
+  evidence_bucket_name = module.aws_cross_region_replication.primary_evidence_bucket_name
+  evidence_bucket_arn  = module.aws_cross_region_replication.primary_evidence_bucket_arn
+
+  event_bus_name = module.aws_eventbridge_core.event_bus_name
+  event_bus_arn  = module.aws_eventbridge_core.event_bus_arn
+
+  notification_emails = [
+    "andrew@strongtowersecurity.io"
+  ]
+
+  autonomy_mode = "approval_required"
+
+  tags = module.tagging_standards.merged_tags
+}

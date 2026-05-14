@@ -87,3 +87,48 @@ output "access_analyzer_name" {
   description = "SAMSON IAM Access Analyzer name."
   value       = module.aws_identity_telemetry.access_analyzer_name
 }
+
+output "event_bus_name" {
+  description = "SAMSON EventBridge bus name."
+  value       = module.aws_eventbridge_core.event_bus_name
+}
+
+output "event_bus_arn" {
+  description = "SAMSON EventBridge bus ARN."
+  value       = module.aws_eventbridge_core.event_bus_arn
+}
+
+output "eventbridge_dlq_arn" {
+  description = "SAMSON EventBridge dead-letter queue ARN."
+  value       = module.aws_eventbridge_core.dead_letter_queue_arn
+}
+
+output "lambda_normalizer_name" {
+  description = "SAMSON Lambda normalizer function name."
+  value       = module.aws_lambda_normalizer.lambda_function_name
+}
+
+output "lambda_normalizer_arn" {
+  description = "SAMSON Lambda normalizer function ARN."
+  value       = module.aws_lambda_normalizer.lambda_function_arn
+}
+
+output "risk_engine_function_name" {
+  description = "SAMSON risk engine Lambda function name."
+  value       = module.aws_risk_engine.risk_engine_function_name
+}
+
+output "risk_engine_function_arn" {
+  description = "SAMSON risk engine Lambda function ARN."
+  value       = module.aws_risk_engine.risk_engine_function_arn
+}
+
+output "response_workflows_function_name" {
+  description = "SAMSON response workflow Lambda function name."
+  value       = module.aws_response_workflows.response_workflows_function_name
+}
+
+output "response_notifications_topic_arn" {
+  description = "SAMSON response notification SNS topic ARN."
+  value       = module.aws_response_workflows.response_notifications_topic_arn
+}
