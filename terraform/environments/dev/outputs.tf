@@ -132,3 +132,23 @@ output "response_notifications_topic_arn" {
   description = "SAMSON response notification SNS topic ARN."
   value       = module.aws_response_workflows.response_notifications_topic_arn
 }
+
+output "splunk_forwarder_function_name" {
+  description = "SAMSON Splunk forwarder Lambda function name."
+  value       = module.splunk_integration.splunk_forwarder_function_name
+}
+
+output "splunk_forwarder_function_arn" {
+  description = "SAMSON Splunk forwarder Lambda function ARN."
+  value       = module.splunk_integration.splunk_forwarder_function_arn
+}
+
+output "ssm_automation_role_arn" {
+  description = "SAMSON SSM automation role ARN."
+  value       = module.aws_systems_manager.ssm_automation_role_arn
+}
+
+output "disable_access_key_document_name" {
+  description = "SAMSON SSM document for disabling IAM access keys."
+  value       = module.aws_systems_manager.disable_access_key_document_name
+}

@@ -209,3 +209,33 @@ module "aws_response_workflows" {
 
   tags = module.tagging_standards.merged_tags
 }
+
+module "splunk_integration" {
+  source = "../../modules/splunk-integration"
+
+  project     = "SAMSON"
+  environment = "dev"
+
+  lambda_source_dir = "../../../src/splunk-forwarder"
+
+  event_bus_name = module.aws_eventbridge_core.event_bus_name
+
+  splunk_hec_url = var.splunk_hec_url
+
+  splunk_hec_token_parameter_name = var.splunk_hec_token_parameter_name
+  splunk_hec_token_parameter_arn  = var.splunk_hec_token_parameter_arn
+
+  splunk_index      = "main"
+  splunk_sourcetype = "samson:risk:event"
+
+  tags = module.tagging_standards.merged_tags
+}
+
+module "aws_systems_manager" {
+  source = "../../modules/aws-systems-manager"
+
+  project     = "SAMSON"
+  environment = "dev"
+
+  tags = module.tagging_standards.merged_tags
+}

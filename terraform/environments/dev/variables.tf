@@ -8,3 +8,21 @@ variable "aws_replica_region" {
   type        = string
   default     = "us-east-2"
 }
+
+variable "splunk_hec_url" {
+  description = "Splunk HEC endpoint URL."
+  type        = string
+  sensitive   = true
+}
+
+variable "splunk_hec_token_parameter_name" {
+  description = "SSM Parameter name storing the Splunk HEC token."
+  type        = string
+  sensitive   = true
+}
+
+variable "splunk_hec_token_parameter_arn" {
+  description = "SSM Parameter ARN storing the Splunk HEC token."
+  type        = string
+  sensitive   = true
+}
