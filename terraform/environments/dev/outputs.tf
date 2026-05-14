@@ -152,3 +152,19 @@ output "disable_access_key_document_name" {
   description = "SAMSON SSM document for disabling IAM access keys."
   value       = module.aws_systems_manager.disable_access_key_document_name
 }
+
+output "azure_platform_management_group_id" {
+  value = module.azure_management_groups.platform_management_group_id
+}
+
+output "azure_security_management_group_id" {
+  value = module.azure_management_groups.security_management_group_id
+}
+
+output "azure_workloads_management_group_id" {
+  value = module.azure_management_groups.workloads_management_group_id
+}
+
+output "azure_sandbox_management_group_id" {
+  value = module.azure_management_groups.sandbox_management_group_id
+}

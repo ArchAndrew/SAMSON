@@ -239,3 +239,10 @@ module "aws_systems_manager" {
 
   tags = module.tagging_standards.merged_tags
 }
+
+module "azure_management_groups" {
+  source = "../../modules/azure-management-groups"
+
+  project     = "SAMSON"
+  environment = "dev"
+}
