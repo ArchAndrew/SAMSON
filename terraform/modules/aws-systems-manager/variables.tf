@@ -10,12 +10,6 @@ variable "environment" {
   default     = "dev"
 }
 
-variable "dlq_retention_seconds" {
-  description = "Dead-letter queue message retention in seconds."
-  type        = number
-  default     = 1209600
-}
-
 variable "tags" {
   description = "Standardized resource tags."
   type        = map(string)
