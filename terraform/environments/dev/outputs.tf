@@ -184,3 +184,19 @@ output "azure_policy_guardrails_initiative_id" {
 output "azure_policy_guardrails_assignment_id" {
   value = module.azure_policy_guardrails.policy_guardrails_assignment_id
 }
+
+output "azure_log_analytics_workspace_id" {
+  value = module.azure_log_analytics.log_analytics_workspace_id
+}
+
+output "azure_log_analytics_workspace_name" {
+  value = module.azure_log_analytics.log_analytics_workspace_name
+}
+
+output "azure_log_analytics_resource_group_name" {
+  value = module.azure_log_analytics.log_analytics_workspace_resource_group_name
+}
+
+output "azure_identity_telemetry_diagnostic_setting_id" {
+  value = module.azure_identity_telemetry.azure_identity_telemetry_diagnostic_setting_id
+}

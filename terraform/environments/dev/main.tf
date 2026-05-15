@@ -268,3 +268,39 @@ module "azure_policy_guardrails" {
   allowed_locations = ["eastus", "eastus2"]
   required_tags     = ["Environment", "Project", "Owner"]
 }
+
+module "azure_log_analytics" {
+  source = "../../modules/azure-log-analytics"
+
+  project             = "SAMSON"
+  environment         = "dev"
+  location            = "eastus"
+  resource_group_name = "rg-samson-dev-log-analytics"
+
+  tags = module.tagging_standards.merged_tags
+}
+
+module "azure_identity_telemetry" {
+  source = "../../modules/azure-identity-telemetry"
+
+  project                    = "SAMSON"
+  environment                = "dev"
+  subscription_id            = var.azure_subscription_id
+  log_analytics_workspace_id = module.azure_log_analytics.log_analytics_workspace_id
+}
+
+module "azure_sentinel_lite" {
+  source = "../../modules/azure-sentinel-lite"
+
+  project                    = "SAMSON"
+  environment                = "dev"
+  log_analytics_workspace_id = module.azure_log_analytics.log_analytics_workspace_id
+}
+
+output "azure_sentinel_onboarding_id" {
+  value = module.azure_sentinel_lite.sentinel_onboarding_id
+}
+
+output "azure_sentinel_high_risk_admin_activity_rule_id" {
+  value = module.azure_sentinel_lite.high_risk_admin_activity_rule_id
+}
