@@ -2,6 +2,8 @@ import json
 import os
 from datetime import datetime, timezone
 
+from src.response_engine.orchestrator import orchestrate_security_event
+
 
 def determine_response(event: dict) -> dict:
     body = event.get("body", event)
@@ -40,10 +42,14 @@ def determine_response(event: dict) -> dict:
 
 
 def lambda_handler(event, context):
-    response = determine_response(event)
+    try:
+        response = orchestrate_security_event(event)
+    except Exception:
+        response = determine_response(event)
+
     print(json.dumps(response))
 
     return {
         "statusCode": 200,
-        "body": json.dumps(response)
+        "body": json.dumps(response),
     }

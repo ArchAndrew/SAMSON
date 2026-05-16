@@ -1,0 +1,45 @@
+from src.normalizer.governance_parser import normalize_event
+from src.risk_engine.governance_risk import calculate_governance_risk
+from src.risk_engine.blast_radius import calculate_blast_radius
+from src.risk_engine.control_mapper import map_controls
+from src.response_engine.response_recommendations import generate_recommendations
+from src.response_engine.approval_workflow import create_approval_payload
+
+
+def orchestrate_security_event(event: dict) -> dict:
+    normalized = normalize_event(event)
+
+    risk_score = calculate_governance_risk({
+        "event_name": normalized.event_name,
+        "provider": normalized.provider,
+    })
+
+    blast_radius = calculate_blast_radius(
+        resource_type="iam_user" if normalized.provider == "aws" else "service_principal",
+        privilege_level="admin" if risk_score >= 80 else "standard",
+    )
+
+    controls = map_controls(normalized.event_name)
+
+    recommendations = generate_recommendations(
+        event_name=normalized.event_name,
+        risk_score=risk_score,
+    )
+
+    approval = create_approval_payload(
+        event_name=normalized.event_name,
+        provider=normalized.provider,
+        risk_score=risk_score,
+        recommendations=recommendations,
+        actor=normalized.actor,
+        resource=normalized.resource,
+    )
+
+    return {
+        "normalized_event": normalized.__dict__,
+        "risk_score": risk_score,
+        "blast_radius": blast_radius,
+        "controls": controls,
+        "recommendations": recommendations,
+        "approval": approval,
+    }
