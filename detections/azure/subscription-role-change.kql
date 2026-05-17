@@ -1,0 +1,6 @@
+AzureActivity
+| where CategoryValue == "Administrative"
+| where OperationNameValue has_any ("roleAssignments/write", "roleDefinitions/write", "roleAssignments/delete")
+| where _ResourceId has "/subscriptions/"
+| project TimeGenerated, Caller, OperationNameValue, ActivityStatusValue, _ResourceId
+| sort by TimeGenerated desc

@@ -1,0 +1,5 @@
+AzureActivity
+| where CategoryValue == "Administrative"
+| where OperationNameValue has "Microsoft.Authorization/roleAssignments/write"
+| project TimeGenerated, Caller, OperationNameValue, ActivityStatusValue, ResourceGroup, _ResourceId
+| sort by TimeGenerated desc

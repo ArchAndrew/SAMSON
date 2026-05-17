@@ -4,6 +4,7 @@ from src.risk_engine.blast_radius import calculate_blast_radius
 from src.risk_engine.control_mapper import map_controls
 from src.response_engine.response_recommendations import generate_recommendations
 from src.response_engine.approval_workflow import create_approval_payload
+from src.ai_engine.azure_openai_summary import generate_executive_summary
 
 
 def orchestrate_security_event(event: dict) -> dict:
@@ -35,6 +36,22 @@ def orchestrate_security_event(event: dict) -> dict:
         resource=normalized.resource,
     )
 
+    summary_input = {
+        "provider": normalized.provider,
+        "event_name": normalized.event_name,
+        "risk_score": risk_score,
+        "severity": (
+            "CRITICAL" if risk_score >= 90
+            else "HIGH" if risk_score >= 80
+            else "MEDIUM" if risk_score >= 50
+            else "LOW"
+        ),
+        "blast_radius": blast_radius,
+        "recommended_response": approval["status"],
+    }
+
+    executive_summary = generate_executive_summary(summary_input)
+
     return {
         "normalized_event": normalized.__dict__,
         "risk_score": risk_score,
@@ -42,4 +59,5 @@ def orchestrate_security_event(event: dict) -> dict:
         "controls": controls,
         "recommendations": recommendations,
         "approval": approval,
+        "executive_summary": executive_summary,
     }

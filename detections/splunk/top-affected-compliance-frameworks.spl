@@ -1,0 +1,6 @@
+index=samson
+| mvexpand controls
+| eval framework=controls.framework
+| eval control=controls.control
+| stats count by framework, control
+| sort - count

@@ -1,0 +1,6 @@
+AzureDiagnostics
+| where ResourceProvider == "MICROSOFT.KEYVAULT"
+| where OperationName has_any ("SecretGet", "SecretList", "KeyGet", "KeyList")
+| summarize access_count=count() by CallerIPAddress, identity_claim_appid_g, bin(TimeGenerated, 15m)
+| where access_count >= 10
+| sort by access_count desc

@@ -1,0 +1,5 @@
+AzureActivity
+| where CategoryValue == "Administrative"
+| where OperationNameValue has_any ("policyAssignments/write", "policyDefinitions/write", "policySetDefinitions/write")
+| project TimeGenerated, Caller, OperationNameValue, ActivityStatusValue, ResourceProviderValue, _ResourceId
+| sort by TimeGenerated desc

@@ -1,0 +1,9 @@
+index=samson
+| stats 
+    count as total_events,
+    avg(risk_score) as avg_risk_score,
+    max(risk_score) as max_risk_score,
+    avg(blast_radius) as avg_blast_radius,
+    count(eval(approval.status="PENDING_APPROVAL")) as pending_approvals
+| eval avg_risk_score=round(avg_risk_score,2)
+| eval avg_blast_radius=round(avg_blast_radius,2)
