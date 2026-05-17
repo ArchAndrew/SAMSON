@@ -1,0 +1,33 @@
+{
+  "rule_id": "aws-assume-role-anomaly",
+  "title": "Suspicious AssumeRole Activity",
+  "provider": "aws",
+  "service": "sts",
+  "severity": "HIGH",
+  "risk_score": 80,
+  "primary_risk": "lateral_movement",
+  "description": "Detects suspicious role assumption activity that may indicate unauthorized access, privilege escalation, or lateral movement.",
+  "event_names": ["AssumeRole"],
+  "mitre_attack": [
+    {
+      "tactic": "Lateral Movement",
+      "technique": "T1550",
+      "name": "Use Alternate Authentication Material"
+    }
+  ],
+  "framework_mappings": [
+    {
+      "framework": "NIST 800-53",
+      "control": "AC-6"
+    },
+    {
+      "framework": "NIST 800-53",
+      "control": "AU-6"
+    },
+    {
+      "framework": "CIS",
+      "control": "6.8"
+    }
+  ],
+  "recommended_response": "Validate the source identity, source IP, session context, and role trust policy before approving continued access."
+}

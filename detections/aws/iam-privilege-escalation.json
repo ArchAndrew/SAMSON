@@ -1,0 +1,41 @@
+{
+  "rule_id": "aws-iam-privilege-escalation",
+  "title": "IAM Privilege Escalation Activity",
+  "provider": "aws",
+  "service": "iam",
+  "severity": "CRITICAL",
+  "risk_score": 95,
+  "primary_risk": "privilege_escalation",
+  "description": "Detects IAM actions commonly associated with privilege escalation, permission expansion, or persistence.",
+  "event_names": [
+    "AttachUserPolicy",
+    "AttachRolePolicy",
+    "PutUserPolicy",
+    "PutRolePolicy",
+    "CreatePolicyVersion",
+    "SetDefaultPolicyVersion",
+    "UpdateAssumeRolePolicy"
+  ],
+  "mitre_attack": [
+    {
+      "tactic": "Privilege Escalation",
+      "technique": "T1098",
+      "name": "Account Manipulation"
+    }
+  ],
+  "framework_mappings": [
+    {
+      "framework": "NIST 800-53",
+      "control": "AC-6"
+    },
+    {
+      "framework": "NIST 800-53",
+      "control": "CM-5"
+    },
+    {
+      "framework": "CIS",
+      "control": "5.1"
+    }
+  ],
+  "recommended_response": "Review the changed IAM policy or role, confirm approval, inspect CloudTrail activity, and revoke unauthorized permission changes."
+}

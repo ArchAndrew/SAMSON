@@ -1,0 +1,41 @@
+{
+  "rule_id": "aws-fullawsaccess-attached-risk",
+  "title": "FullAWSAccess or Administrator Policy Attached",
+  "provider": "aws",
+  "service": "iam",
+  "severity": "CRITICAL",
+  "risk_score": 95,
+  "primary_risk": "privilege_escalation",
+  "description": "Detects attachment of highly privileged AWS managed policies that may grant broad administrative access.",
+  "event_names": [
+    "AttachUserPolicy",
+    "AttachRolePolicy",
+    "AttachGroupPolicy"
+  ],
+  "suspicious_policy_names": [
+    "AdministratorAccess",
+    "FullAWSAccess"
+  ],
+  "mitre_attack": [
+    {
+      "tactic": "Privilege Escalation",
+      "technique": "T1098",
+      "name": "Account Manipulation"
+    }
+  ],
+  "framework_mappings": [
+    {
+      "framework": "NIST 800-53",
+      "control": "AC-6"
+    },
+    {
+      "framework": "NIST 800-53",
+      "control": "AC-2"
+    },
+    {
+      "framework": "CIS",
+      "control": "1.16"
+    }
+  ],
+  "recommended_response": "Immediately validate authorization, review the affected principal, remove excessive permissions if unauthorized, and escalate to security leadership."
+}

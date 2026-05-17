@@ -1,0 +1,39 @@
+{
+  "rule_id": "aws-organizations-account-change",
+  "title": "AWS Organizations Account or OU Change",
+  "provider": "aws",
+  "service": "organizations",
+  "severity": "HIGH",
+  "risk_score": 85,
+  "primary_risk": "governance_drift",
+  "description": "Detects account, OU, or organization structure changes that may affect governance boundaries and inherited controls.",
+  "event_names": [
+    "CreateAccount",
+    "MoveAccount",
+    "CreateOrganizationalUnit",
+    "DeleteOrganizationalUnit",
+    "UpdateOrganizationalUnit"
+  ],
+  "mitre_attack": [
+    {
+      "tactic": "Defense Evasion",
+      "technique": "T1562",
+      "name": "Impair Defenses"
+    }
+  ],
+  "framework_mappings": [
+    {
+      "framework": "NIST 800-53",
+      "control": "CM-2"
+    },
+    {
+      "framework": "NIST 800-53",
+      "control": "CM-8"
+    },
+    {
+      "framework": "CIS",
+      "control": "1.1"
+    }
+  ],
+  "recommended_response": "Review organization change history, validate business approval, and confirm SCP inheritance remains intact."
+}
