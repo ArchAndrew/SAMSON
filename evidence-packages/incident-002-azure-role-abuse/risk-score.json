@@ -1,0 +1,10 @@
+{
+  "provider": "azure",
+  "event_name": "Microsoft.Authorization/roleAssignments/write",
+  "risk_score": 85,
+  "severity": "HIGH",
+  "blast_radius": 85,
+  "primary_risk": "azure_rbac_escalation",
+  "approval_required": true,
+  "recommended_response": "escalate_for_review"
+}

@@ -1,0 +1,20 @@
+{
+  "event_name": "CreateAccessKey",
+  "framework_mappings": [
+    {
+      "framework": "NIST 800-53",
+      "control": "AC-2",
+      "description": "Account Management"
+    },
+    {
+      "framework": "NIST 800-53",
+      "control": "IA-2",
+      "description": "Identification and Authentication"
+    },
+    {
+      "framework": "CIS",
+      "control": "5.4",
+      "description": "Access key lifecycle governance"
+    }
+  ]
+}

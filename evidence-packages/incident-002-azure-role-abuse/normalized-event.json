@@ -1,0 +1,8 @@
+{
+  "provider": "azure",
+  "event_name": "Microsoft.Authorization/roleAssignments/write",
+  "actor": "admin@company.com",
+  "resource": "/subscriptions/123/resourceGroups/rg1/providers/Microsoft.Authorization/roleAssignments/abc123",
+  "timestamp": "2026-05-14T22:00:00Z",
+  "severity": null
+}
