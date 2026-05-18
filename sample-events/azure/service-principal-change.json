@@ -1,0 +1,12 @@
+{
+  "source": "azure",
+  "operationName": {
+    "value": "Add service principal"
+  },
+  "caller": "cloudadmin@company.com",
+  "resourceId": "/subscriptions/123/providers/Microsoft.Authorization/servicePrincipals/spn123",
+  "eventTimestamp": "2026-05-17T04:20:00Z",
+  "category": {
+    "value": "AuditLogs"
+  }
+}

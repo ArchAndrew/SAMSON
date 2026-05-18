@@ -1,6 +1,7 @@
 import json
 import os
 from datetime import datetime, timezone
+from src.risk_engine.executive_summary import generate_executive_summary
 
 
 def score_event(event: dict) -> dict:
@@ -28,7 +29,7 @@ def score_event(event: dict) -> dict:
         severity = "MEDIUM" if score < 85 else severity
         recommended_action = "Validate role assumption context and source identity"
 
-    return {
+    result = {
         "schema_version": "1.0",
         "project": os.getenv("PROJECT", "SAMSON"),
         "environment": os.getenv("ENVIRONMENT", "dev"),
@@ -40,6 +41,20 @@ def score_event(event: dict) -> dict:
         "decision_authority": "deterministic-risk-engine",
         "source_event": source_event,
     }
+
+    result["executive_summary"] = generate_executive_summary({
+        "provider": source_event.get("source", "aws"),
+        "event_name": detail_type,
+        "actor": "unknown",
+        "risk_score": score,
+        "blast_radius": 0,
+        "severity": severity,
+        "approval_status": "PENDING_APPROVAL" if score >= 80 else "AUTO_REVIEW",
+        "framework": "General",
+        "control": "Governance Review",
+    })
+
+    return result
 
 
 def lambda_handler(event, context):

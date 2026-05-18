@@ -1,0 +1,16 @@
+{
+  "source": "aws",
+  "detail": {
+    "eventName": "CreateAccount",
+    "eventTime": "2026-05-17T03:25:00Z",
+    "userIdentity": {
+      "arn": "arn:aws:iam::123456789012:user/org-admin"
+    },
+    "requestParameters": {
+      "accountName": "unapproved-workload-account",
+      "email": "security-lab@example.com"
+    },
+    "sourceIPAddress": "198.51.100.80",
+    "awsRegion": "us-east-1"
+  }
+}

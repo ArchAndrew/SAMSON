@@ -1,0 +1,12 @@
+{
+  "source": "azure",
+  "operationName": {
+    "value": "Microsoft.Authorization/roleAssignments/write"
+  },
+  "caller": "subscription-admin@company.com",
+  "resourceId": "/subscriptions/123/providers/Microsoft.Authorization/roleAssignments/sub-owner-001",
+  "eventTimestamp": "2026-05-17T04:25:00Z",
+  "category": {
+    "value": "Administrative"
+  }
+}
