@@ -6,6 +6,8 @@ from src.response_engine.response_recommendations import generate_recommendation
 from src.response_engine.approval_workflow import create_approval_payload
 from src.ai_engine.azure_openai_summary import generate_executive_summary
 from src.notification_engine.sns_notifier import publish_notification
+from dotenv import load_dotenv
+load_dotenv()
 
 
 def orchestrate_security_event(event: dict) -> dict:
