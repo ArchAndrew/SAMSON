@@ -8,7 +8,7 @@ from src.response_engine.response_recommendations import generate_recommendation
 from src.response_engine.approval_workflow import create_approval_payload
 from src.risk_engine.executive_summary import generate_executive_summary
 from src.notification_engine.sns_notifier import publish_notification
-
+from src.notification_engine.splunk_notifier import publish_to_splunk
 load_dotenv()
 
 
@@ -83,7 +83,9 @@ def orchestrate_security_event(event: dict) -> dict:
     }
 
     notification_result = publish_notification(enriched_event)
+    splunk_result = publish_to_splunk(enriched_event)
 
     enriched_event["notification_result"] = notification_result
+    enriched_event["splunk_result"] = splunk_result
 
     return enriched_event

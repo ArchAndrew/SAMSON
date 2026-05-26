@@ -10,7 +10,7 @@ def generate_deterministic_summary(event: dict) -> str:
     blast_radius = event.get("blast_radius", 0)
     recommended_response = event.get(
         "recommended_response",
-        event.get("approval_status", "AUTO_REVIEW")
+        event.get("approval_status", "AUTO_REVIEW"),
     )
 
     recommendations = event.get("recommendations", [])
@@ -32,23 +32,14 @@ def generate_deterministic_summary(event: dict) -> str:
 def generate_ai_summary(event: dict) -> str:
     deterministic_summary = generate_deterministic_summary(event)
 
-    recommendations = event.get("recommendations", [])
-    recommendation_text = (
-        "; ".join(recommendations[:3])
-        if recommendations
-        else "Perform standard governance review."
-    )
-
     endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
     api_key = os.getenv("AZURE_OPENAI_API_KEY")
     deployment = os.getenv("AZURE_OPENAI_DEPLOYMENT")
 
     if not endpoint:
         raise ValueError("AZURE_OPENAI_ENDPOINT is not set")
-
     if not api_key:
         raise ValueError("AZURE_OPENAI_API_KEY is not set")
-
     if not deployment:
         raise ValueError("AZURE_OPENAI_DEPLOYMENT is not set")
 
@@ -79,8 +70,7 @@ def generate_ai_summary(event: dict) -> str:
                     "executive risk briefing for a CISO. Use 2-4 polished sentences. "
                     "Preserve all facts exactly, make the business risk clear, "
                     "and include recommended remediation actions.\n\n"
-                    f"{deterministic_summary}\n\n"
-                    f"Recommended remediation actions: {recommendation_text}"
+                    f"{deterministic_summary}"
                 ),
             },
         ],
@@ -91,11 +81,6 @@ def generate_ai_summary(event: dict) -> str:
 
 
 def generate_executive_summary(event: dict) -> str:
-    """
-    Uses Azure OpenAI (Microsoft Foundry) when configured.
-    Falls back to deterministic summaries if AI generation fails.
-    """
-
     try:
         required_vars = [
             "AZURE_OPENAI_API_KEY",
