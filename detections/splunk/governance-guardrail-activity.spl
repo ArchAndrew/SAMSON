@@ -1,0 +1,5 @@
+index=samson
+| eval event_name=coalesce(normalized_event.event_name, event_name, approval.event_name, "unknown")
+| search event_name IN ("CreateAccessKey", "AttachUserPolicy", "PutUserPolicy", "Microsoft.Authorization/roleAssignments/write", "Microsoft.Authorization/policyAssignments/write")
+| stats count by event_name, approval.status
+| sort - count

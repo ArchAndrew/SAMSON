@@ -1,0 +1,17 @@
+{
+  "source": "aws",
+  "detail": {
+    "eventName": "CreateAccessKey",
+    "eventTime": "2026-05-14T00:00:00Z",
+    "userIdentity": {
+      "type": "IAMUser",
+      "arn": "arn:aws:iam::123456789012:user/admin",
+      "userName": "admin"
+    },
+    "requestParameters": {
+      "userName": "test-user"
+    },
+    "sourceIPAddress": "198.51.100.25",
+    "awsRegion": "us-east-1"
+  }
+}

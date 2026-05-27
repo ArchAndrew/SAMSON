@@ -1,0 +1,4 @@
+AuditLogs
+| where OperationName has_any ("Add service principal", "Update service principal", "Add app role assignment to service principal")
+| project TimeGenerated, OperationName, Result, InitiatedBy, TargetResources
+| sort by TimeGenerated desc

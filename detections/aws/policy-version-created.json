@@ -1,0 +1,36 @@
+{
+  "rule_id": "aws-policy-version-created",
+  "title": "IAM Policy Version Created or Set as Default",
+  "provider": "aws",
+  "service": "iam",
+  "severity": "HIGH",
+  "risk_score": 85,
+  "primary_risk": "policy_tampering",
+  "description": "Detects creation or activation of IAM policy versions, which may be used to introduce hidden or expanded permissions.",
+  "event_names": [
+    "CreatePolicyVersion",
+    "SetDefaultPolicyVersion"
+  ],
+  "mitre_attack": [
+    {
+      "tactic": "Defense Evasion",
+      "technique": "T1562",
+      "name": "Impair Defenses"
+    }
+  ],
+  "framework_mappings": [
+    {
+      "framework": "NIST 800-53",
+      "control": "CM-5"
+    },
+    {
+      "framework": "NIST 800-53",
+      "control": "AC-6"
+    },
+    {
+      "framework": "CIS",
+      "control": "5.2"
+    }
+  ],
+  "recommended_response": "Compare the new policy version against the previous version, validate approval, and roll back unauthorized permission expansion."
+}

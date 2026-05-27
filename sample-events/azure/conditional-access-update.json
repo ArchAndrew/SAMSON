@@ -1,0 +1,12 @@
+{
+  "source": "azure",
+  "operationName": {
+    "value": "Update conditional access policy"
+  },
+  "caller": "identityadmin@company.com",
+  "resourceId": "/tenants/123/providers/Microsoft.Authorization/conditionalAccessPolicies/policy123",
+  "eventTimestamp": "2026-05-17T03:55:00Z",
+  "category": {
+    "value": "Administrative"
+  }
+}

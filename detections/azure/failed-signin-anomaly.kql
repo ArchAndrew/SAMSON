@@ -1,0 +1,5 @@
+SigninLogs
+| where ResultType != 0
+| summarize failed_attempts=count() by UserPrincipalName, IPAddress, bin(TimeGenerated, 15m)
+| where failed_attempts >= 5
+| sort by failed_attempts desc

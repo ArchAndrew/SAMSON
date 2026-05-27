@@ -1,0 +1,16 @@
+{
+  "source": "aws",
+  "detail": {
+    "eventName": "AttachUserPolicy",
+    "eventTime": "2026-05-17T03:45:00Z",
+    "userIdentity": {
+      "arn": "arn:aws:iam::123456789012:user/security-admin"
+    },
+    "requestParameters": {
+      "userName": "developer-user",
+      "policyArn": "arn:aws:iam::aws:policy/AdministratorAccess"
+    },
+    "sourceIPAddress": "198.51.100.25",
+    "awsRegion": "us-east-1"
+  }
+}

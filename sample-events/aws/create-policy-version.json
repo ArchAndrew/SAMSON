@@ -1,0 +1,16 @@
+{
+  "source": "aws",
+  "detail": {
+    "eventName": "CreatePolicyVersion",
+    "eventTime": "2026-05-17T03:40:00Z",
+    "userIdentity": {
+      "arn": "arn:aws:iam::123456789012:user/devops"
+    },
+    "requestParameters": {
+      "policyArn": "arn:aws:iam::123456789012:policy/AppTeamPolicy",
+      "setAsDefault": true
+    },
+    "sourceIPAddress": "198.51.100.90",
+    "awsRegion": "us-east-1"
+  }
+}

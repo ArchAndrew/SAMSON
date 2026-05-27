@@ -1,0 +1,33 @@
+{
+  "rule_id": "aws-cloudtrail-console-login-risk",
+  "title": "AWS Console Login Risk",
+  "provider": "aws",
+  "service": "signin",
+  "severity": "MEDIUM",
+  "risk_score": 60,
+  "primary_risk": "suspicious_authentication",
+  "description": "Detects AWS console login events that may require review based on source IP, MFA status, or account context.",
+  "event_names": ["ConsoleLogin"],
+  "mitre_attack": [
+    {
+      "tactic": "Initial Access",
+      "technique": "T1078",
+      "name": "Valid Accounts"
+    }
+  ],
+  "framework_mappings": [
+    {
+      "framework": "NIST 800-53",
+      "control": "IA-2"
+    },
+    {
+      "framework": "NIST 800-53",
+      "control": "AU-6"
+    },
+    {
+      "framework": "CIS",
+      "control": "6.3"
+    }
+  ],
+  "recommended_response": "Review MFA usage, source IP, geolocation, and recent actions performed after login."
+}

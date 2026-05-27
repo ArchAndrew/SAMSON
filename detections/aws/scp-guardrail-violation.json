@@ -1,0 +1,41 @@
+{
+  "rule_id": "aws-scp-guardrail-violation",
+  "title": "SCP Guardrail Violation Attempt",
+  "provider": "aws",
+  "service": "organizations",
+  "severity": "CRITICAL",
+  "risk_score": 90,
+  "primary_risk": "preventive_control_violation",
+  "description": "Detects attempts to perform actions denied by Service Control Policies, such as use of unapproved regions or restricted root-user activity.",
+  "event_names": [
+    "AccessDenied",
+    "UnauthorizedOperation"
+  ],
+  "error_codes": [
+    "AccessDenied",
+    "UnauthorizedOperation",
+    "Client.UnauthorizedOperation"
+  ],
+  "mitre_attack": [
+    {
+      "tactic": "Defense Evasion",
+      "technique": "T1562",
+      "name": "Impair Defenses"
+    }
+  ],
+  "framework_mappings": [
+    {
+      "framework": "NIST 800-53",
+      "control": "AC-6"
+    },
+    {
+      "framework": "NIST 800-53",
+      "control": "SC-7"
+    },
+    {
+      "framework": "CIS",
+      "control": "4.8"
+    }
+  ],
+  "recommended_response": "Investigate the denied action, validate whether the attempt was malicious or misconfigured automation, and preserve evidence for governance review."
+}

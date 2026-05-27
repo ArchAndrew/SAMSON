@@ -1,0 +1,6 @@
+index=samson
+| eval actor=coalesce(normalized_event.actor, actor, approval.actor, "unknown")
+| eval event_name=coalesce(normalized_event.event_name, event_name, approval.event_name, "unknown")
+| eval provider=coalesce(normalized_event.provider, provider, approval.provider, "unknown")
+| table _time provider actor event_name risk_score blast_radius approval.status
+| sort - _time

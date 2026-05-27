@@ -1,0 +1,45 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+
+# Terraform vars/secrets
+*.tfvars
+*.tfvars.json
+
+# AWS
+.aws/
+
+# Python
+__pycache__/
+*.pyc
+venv/
+
+# VSCode
+.vscode/
+
+# Logs
+*.log
+
+# Env files
+.env
+.env.*
+
+# Mac/Linux junk
+.DS_Store
+
+# Node
+node_modules/
+
+# Sensitive artifacts
+secrets/
+keys/
+*.pem
+*.key
+
+# Terraform plans
+*.tfplan
+
+# ZIP artifacts
+*.zip

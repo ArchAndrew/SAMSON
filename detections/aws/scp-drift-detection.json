@@ -1,0 +1,39 @@
+{
+  "rule_id": "aws-scp-drift-detection",
+  "title": "Service Control Policy Drift Detected",
+  "provider": "aws",
+  "service": "organizations",
+  "severity": "HIGH",
+  "risk_score": 80,
+  "primary_risk": "governance_drift",
+  "description": "Detects changes to Service Control Policies or policy attachments that may weaken preventive governance controls.",
+  "event_names": [
+    "CreatePolicy",
+    "UpdatePolicy",
+    "DeletePolicy",
+    "AttachPolicy",
+    "DetachPolicy"
+  ],
+  "mitre_attack": [
+    {
+      "tactic": "Defense Evasion",
+      "technique": "T1562",
+      "name": "Impair Defenses"
+    }
+  ],
+  "framework_mappings": [
+    {
+      "framework": "NIST 800-53",
+      "control": "CM-2"
+    },
+    {
+      "framework": "NIST 800-53",
+      "control": "CA-7"
+    },
+    {
+      "framework": "CIS",
+      "control": "4.1"
+    }
+  ],
+  "recommended_response": "Validate the SCP change, compare against baseline guardrails, and restore expected policy attachments if drift is unauthorized."
+}

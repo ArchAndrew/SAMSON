@@ -1,0 +1,3 @@
+index=samson
+| eval severity=coalesce(severity, approval.status, normalized_event.severity, "UNKNOWN")
+| timechart span=1h count by severity

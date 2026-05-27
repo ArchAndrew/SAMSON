@@ -1,0 +1,10 @@
+{
+  "provider": "aws",
+  "event_name": "CreateAccessKey",
+  "risk_score": 90,
+  "severity": "CRITICAL",
+  "blast_radius": 90,
+  "primary_risk": "credential_persistence",
+  "approval_required": true,
+  "recommended_response": "escalate_for_review"
+}

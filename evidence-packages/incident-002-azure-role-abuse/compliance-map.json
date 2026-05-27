@@ -1,0 +1,20 @@
+{
+  "event_name": "Microsoft.Authorization/roleAssignments/write",
+  "framework_mappings": [
+    {
+      "framework": "NIST 800-53",
+      "control": "AC-2",
+      "description": "Account Management"
+    },
+    {
+      "framework": "NIST 800-53",
+      "control": "AC-6",
+      "description": "Least Privilege"
+    },
+    {
+      "framework": "CIS",
+      "control": "6.1",
+      "description": "Role-based access governance"
+    }
+  ]
+}

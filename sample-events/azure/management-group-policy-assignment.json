@@ -1,0 +1,12 @@
+{
+  "source": "azure",
+  "operationName": {
+    "value": "Microsoft.Authorization/policyAssignments/write"
+  },
+  "caller": "governance@company.com",
+  "resourceId": "/providers/Microsoft.Management/managementGroups/samson-dev-security/providers/Microsoft.Authorization/policyAssignments/required-tags",
+  "eventTimestamp": "2026-05-17T04:10:00Z",
+  "category": {
+    "value": "Administrative"
+  }
+}

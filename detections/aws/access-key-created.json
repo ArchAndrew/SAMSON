@@ -1,0 +1,33 @@
+{
+  "rule_id": "aws-access-key-created",
+  "title": "IAM Access Key Created",
+  "provider": "aws",
+  "service": "iam",
+  "severity": "CRITICAL",
+  "risk_score": 90,
+  "primary_risk": "credential_persistence",
+  "description": "Detects creation of long-lived IAM access keys that may enable persistence or unauthorized programmatic access.",
+  "event_names": ["CreateAccessKey"],
+  "mitre_attack": [
+    {
+      "tactic": "Persistence",
+      "technique": "T1098",
+      "name": "Account Manipulation"
+    }
+  ],
+  "framework_mappings": [
+    {
+      "framework": "NIST 800-53",
+      "control": "AC-2"
+    },
+    {
+      "framework": "NIST 800-53",
+      "control": "IA-2"
+    },
+    {
+      "framework": "CIS",
+      "control": "5.4"
+    }
+  ],
+  "recommended_response": "Validate authorization, review recent IAM activity, rotate unnecessary keys, and escalate if unauthorized."
+}

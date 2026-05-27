@@ -1,0 +1,3 @@
+index=samson
+| eval evidence_status=if(isnotnull(normalized_event.raw_event) OR isnotnull(raw_event), "Evidence Captured", "Evidence Missing")
+| stats count by evidence_status
