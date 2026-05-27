@@ -2,50 +2,57 @@ import json
 import os
 from datetime import datetime, timezone
 
-from src.response_engine.orchestrator import orchestrate_security_event
-
 
 def determine_response(event: dict) -> dict:
-    body = event.get("body", event)
+    """
+    Public showcase implementation of SAMSON response orchestration.
 
-    if isinstance(body, str):
-        try:
-            body = json.loads(body)
-        except json.JSONDecodeError:
-            body = {"raw_body": body}
+    NOTE:
+    The private SAMSON implementation includes:
+    - deterministic risk scoring
+    - approval-aware response routing
+    - governance escalation logic
+    - autonomous remediation workflows
+    - blast radius analysis
+    - executive response coordination
 
-    severity = body.get("severity", "LOW")
-    risk_score = body.get("risk_score", 0)
-    autonomy_mode = os.getenv("AUTONOMY_MODE", "approval_required")
+    This sanitized version preserves the response-engine structure
+    while protecting proprietary orchestration logic.
+    """
 
-    action = "monitor_only"
-    approval_required = False
+    severity = event.get("severity", "LOW").upper()
 
-    if severity in ["HIGH", "CRITICAL"] or risk_score >= 85:
-        action = "escalate_for_review"
+    if severity in ["CRITICAL", "HIGH"]:
+        recommended_action = "ESCALATE_AND_REVIEW"
         approval_required = True
-
-    if autonomy_mode == "autonomous" and severity == "CRITICAL":
-        action = "automated_containment_candidate"
+        autonomy_mode = "SUPERVISED"
+    else:
+        recommended_action = "MONITOR"
         approval_required = False
+        autonomy_mode = "ASSISTED"
 
     return {
         "schema_version": "1.0",
         "project": os.getenv("PROJECT", "SAMSON"),
-        "environment": os.getenv("ENVIRONMENT", "dev"),
+        "environment": os.getenv("ENVIRONMENT", "public-demo"),
         "evaluated_at": datetime.now(timezone.utc).isoformat(),
         "autonomy_mode": autonomy_mode,
-        "recommended_response": action,
+        "recommended_response": recommended_action,
         "approval_required": approval_required,
-        "source_risk_event": body,
+        "event_summary": {
+            "provider": event.get("provider", "unknown"),
+            "event_name": event.get("event_name", "sanitized-event"),
+            "severity": severity,
+        },
     }
 
 
 def lambda_handler(event, context):
-    try:
-        response = orchestrate_security_event(event)
-    except Exception:
-        response = determine_response(event)
+    """
+    Public SAMSON response-engine Lambda entry point.
+    """
+
+    response = determine_response(event)
 
     print(json.dumps(response))
 

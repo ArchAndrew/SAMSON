@@ -43,3 +43,10 @@ keys/
 
 # ZIP artifacts
 *.zip
+
+# compiled artifacts
+build/
+dist/
+
+src/**/__pycache__/
+*.pyc

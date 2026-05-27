@@ -1,67 +1,80 @@
 import json
 import os
 from datetime import datetime, timezone
+
 from src.risk_engine.executive_summary import generate_executive_summary
 
 
 def score_event(event: dict) -> dict:
-    detail_type = event.get("detail_type") or event.get("detail-type", "unknown")
-    source_event = event.get("source_event", event)
+    """
+    Public showcase implementation of the SAMSON risk-engine Lambda.
 
-    raw_text = json.dumps(source_event).lower()
+    NOTE:
+    The private SAMSON implementation includes:
+    - deterministic governance scoring
+    - identity and privilege analysis
+    - attack-path correlation
+    - blast-radius estimation
+    - compliance control mapping
+    - approval workflow alignment
+    - executive summary enrichment
 
-    score = 25
+    This sanitized version preserves the Lambda contract
+    while protecting proprietary scoring logic.
+    """
+
+    detail_type = event.get("detail_type") or event.get(
+        "detail-type",
+        "sanitized-event",
+    )
+
+    score = 45
     severity = "LOW"
-    recommended_action = "Log and monitor"
-
-    if "createaccesskey" in raw_text or "attachuserpolicy" in raw_text:
-        score = 85
-        severity = "HIGH"
-        recommended_action = "Review IAM activity and consider disabling unauthorized credentials"
-
-    if "administratoraccess" in raw_text or "fullawsaccess" in raw_text:
-        score = 95
-        severity = "CRITICAL"
-        recommended_action = "Escalate immediately and validate privilege escalation path"
-
-    if "assumerole" in raw_text:
-        score = max(score, 70)
-        severity = "MEDIUM" if score < 85 else severity
-        recommended_action = "Validate role assumption context and source identity"
+    recommended_action = "Monitor and review governance activity."
 
     result = {
         "schema_version": "1.0",
         "project": os.getenv("PROJECT", "SAMSON"),
-        "environment": os.getenv("ENVIRONMENT", "dev"),
+        "environment": os.getenv("ENVIRONMENT", "public-demo"),
         "scored_at": datetime.now(timezone.utc).isoformat(),
         "detail_type": detail_type,
         "risk_score": score,
         "severity": severity,
         "recommended_action": recommended_action,
         "decision_authority": "deterministic-risk-engine",
-        "source_event": source_event,
+        "public_showcase": True,
+        "source_event": {
+            "message": "Sanitized event payload removed from public release."
+        },
     }
 
-    result["executive_summary"] = generate_executive_summary({
-        "provider": source_event.get("source", "aws"),
-        "event_name": detail_type,
-        "actor": "unknown",
-        "risk_score": score,
-        "blast_radius": 0,
-        "severity": severity,
-        "approval_status": "PENDING_APPROVAL" if score >= 80 else "AUTO_REVIEW",
-        "framework": "General",
-        "control": "Governance Review",
-    })
+    result["executive_summary"] = generate_executive_summary(
+        {
+            "provider": event.get("source", "unknown"),
+            "event_name": detail_type,
+            "actor": "sanitized-actor",
+            "risk_score": score,
+            "blast_radius": "sanitized",
+            "severity": severity,
+            "approval_status": "AUTO_REVIEW",
+            "framework": "General",
+            "control": "Governance Review",
+        }
+    )
 
     return result
 
 
 def lambda_handler(event, context):
+    """
+    Public SAMSON risk-engine Lambda entry point.
+    """
+
     result = score_event(event)
+
     print(json.dumps(result))
 
     return {
         "statusCode": 200,
-        "body": json.dumps(result)
+        "body": json.dumps(result),
     }

@@ -1,41 +1,76 @@
-def map_controls(event_name: str) -> list[dict]:
-    mappings = {
-        "CreateAccessKey": [
-            {"framework": "NIST 800-53", "control": "AC-2"},
-            {"framework": "NIST 800-53", "control": "IA-2"},
-            {"framework": "CIS", "control": "5.4"},
-            {"framework": "HIPAA", "control": "164.308(a)(1)"},
-            {"framework": "ISO 27001", "control": "A.5.15"},
-            {"framework": "PCI-DSS", "control": "7.2"},
+def map_controls(
+    event_name: str,
+) -> list[dict]:
+    """
+    Public showcase compliance control mapping engine.
+
+    NOTE:
+    The private SAMSON implementation includes:
+    - dynamic compliance correlation
+    - provider-aware governance mappings
+    - organization-specific control overlays
+    - risk-adaptive control prioritization
+    - policy inheritance analysis
+    - audit evidence correlation
+    - framework cross-referencing logic
+
+    This sanitized version demonstrates the architectural
+    concept without exposing proprietary compliance mappings.
+    """
+
+    control_mappings = {
+        "IdentityEvent": [
+            {
+                "framework": "NIST",
+                "control": "Identity Governance",
+            },
+            {
+                "framework": "ISO27001",
+                "control": "Access Management",
+            },
+            {
+                "framework": "CIS",
+                "control": "Authentication Controls",
+            },
         ],
-        "AttachUserPolicy": [
-            {"framework": "NIST 800-53", "control": "AC-6"},
-            {"framework": "CIS", "control": "1.16"},
-            {"framework": "HIPAA", "control": "164.308(a)(4)"},
-            {"framework": "ISO 27001", "control": "A.5.18"},
-            {"framework": "PCI-DSS", "control": "7.1"},
+
+        "PrivilegeEvent": [
+            {
+                "framework": "NIST",
+                "control": "Privileged Access",
+            },
+            {
+                "framework": "ISO27001",
+                "control": "Least Privilege",
+            },
+            {
+                "framework": "PCI-DSS",
+                "control": "Access Restriction",
+            },
         ],
-        "Microsoft.Authorization/roleAssignments/write": [
-            {"framework": "NIST 800-53", "control": "AC-6"},
-            {"framework": "ISO 27001", "control": "A.5.15"},
-            {"framework": "HIPAA", "control": "164.312(a)(1)"},
-            {"framework": "PCI-DSS", "control": "7.2"},
-        ],
-        "AssumeRole": [
-            {"framework": "NIST 800-53", "control": "AC-3"},
-            {"framework": "NIST 800-53", "control": "IA-2"},
-            {"framework": "CIS", "control": "1.22"},
-            {"framework": "ISO 27001", "control": "A.5.15"},
-        ],
-        "CreatePolicyVersion": [
-            {"framework": "NIST 800-53", "control": "AC-6"},
-            {"framework": "CIS", "control": "1.16"},
-            {"framework": "ISO 27001", "control": "A.5.1"},
-            {"framework": "PCI-DSS", "control": "7.2"},
+
+        "ConfigurationEvent": [
+            {
+                "framework": "NIST",
+                "control": "Configuration Management",
+            },
+            {
+                "framework": "ISO27001",
+                "control": "Operational Security",
+            },
+            {
+                "framework": "CIS",
+                "control": "Secure Configuration",
+            },
         ],
     }
 
-    return mappings.get(
+    return control_mappings.get(
         event_name,
-        [{"framework": "General", "control": "Governance Review"}],
+        [
+            {
+                "framework": "General",
+                "control": "Governance Review",
+            }
+        ],
     )

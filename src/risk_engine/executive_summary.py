@@ -1,97 +1,105 @@
 import os
-from openai import OpenAI
 
 
-def generate_deterministic_summary(event: dict) -> str:
+def generate_deterministic_summary(
+    event: dict,
+) -> str:
+    """
+    Public showcase deterministic summary engine.
+
+    NOTE:
+    The private SAMSON implementation includes:
+    - executive-focused AI summarization
+    - governance-aware context enrichment
+    - risk-to-business impact translation
+    - compliance correlation logic
+    - provider-specific intelligence generation
+    - adaptive remediation prioritization
+    - executive briefing optimization
+
+    This sanitized version demonstrates the architectural
+    pattern without exposing proprietary prompt engineering
+    or enterprise summarization workflows.
+    """
+
     severity = event.get("severity", "UNKNOWN")
     provider = event.get("provider", "unknown")
-    event_name = event.get("event_name", "UnknownEvent")
+    event_name = event.get(
+        "event_name",
+        "UnknownEvent",
+    )
     risk_score = event.get("risk_score", 0)
-    blast_radius = event.get("blast_radius", 0)
-    recommended_response = event.get(
-        "recommended_response",
-        event.get("approval_status", "AUTO_REVIEW"),
+
+    recommendations = event.get(
+        "recommendations",
+        [],
     )
 
-    recommendations = event.get("recommendations", [])
     recommendation_text = (
-        "; ".join(recommendations[:3])
+        ", ".join(recommendations[:2])
         if recommendations
-        else "Perform standard governance review."
+        else "Perform governance review."
     )
 
     return (
-        f"A {severity} severity governance event was detected in {provider}. "
-        f"The event '{event_name}' received a risk score of {risk_score} "
-        f"and an estimated blast radius of {blast_radius}. "
-        f"The recommended response status is '{recommended_response}'. "
-        f"Recommended remediation actions include: {recommendation_text}"
+        f"A {severity} governance event was detected "
+        f"in the {provider} environment. "
+        f"The event '{event_name}' received a "
+        f"risk score of {risk_score}. "
+        f"Recommended actions include: "
+        f"{recommendation_text}."
     )
 
 
-def generate_ai_summary(event: dict) -> str:
-    deterministic_summary = generate_deterministic_summary(event)
+def generate_ai_summary(
+    event: dict,
+) -> str:
+    """
+    Public showcase AI summary interface.
 
-    endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
-    api_key = os.getenv("AZURE_OPENAI_API_KEY")
-    deployment = os.getenv("AZURE_OPENAI_DEPLOYMENT")
+    NOTE:
+    The private implementation integrates with
+    enterprise AI services and governance-aware
+    orchestration pipelines.
 
-    if not endpoint:
-        raise ValueError("AZURE_OPENAI_ENDPOINT is not set")
-    if not api_key:
-        raise ValueError("AZURE_OPENAI_API_KEY is not set")
-    if not deployment:
-        raise ValueError("AZURE_OPENAI_DEPLOYMENT is not set")
+    This sanitized version intentionally avoids:
+    - exposing AI provider integrations
+    - revealing prompt engineering logic
+    - disclosing model orchestration workflows
+    - sharing proprietary summarization patterns
+    """
 
-    if not endpoint.endswith("/"):
-        endpoint += "/"
-
-    client = OpenAI(
-        api_key=api_key,
-        base_url=endpoint,
+    deterministic_summary = (
+        generate_deterministic_summary(event)
     )
 
-    response = client.chat.completions.create(
-        model=deployment,
-        messages=[
-            {
-                "role": "system",
-                "content": (
-                    "You are a cybersecurity executive advisor. "
-                    "Rewrite security findings into concise, professional "
-                    "executive summaries for CISOs and senior executives. "
-                    "Preserve all facts exactly and do not invent details."
-                ),
-            },
-            {
-                "role": "user",
-                "content": (
-                    "Rewrite this deterministic security summary into a concise "
-                    "executive risk briefing for a CISO. Use 2-4 polished sentences. "
-                    "Preserve all facts exactly, make the business risk clear, "
-                    "and include recommended remediation actions.\n\n"
-                    f"{deterministic_summary}"
-                ),
-            },
-        ],
-        max_completion_tokens=220,
+    return (
+        "[SANITIZED AI SUMMARY]\n"
+        "Executive summarization pipeline removed "
+        "from public release.\n\n"
+        f"Fallback Summary:\n"
+        f"{deterministic_summary}"
     )
 
-    return response.choices[0].message.content.strip()
 
+def generate_executive_summary(
+    event: dict,
+) -> str:
+    """
+    Public-facing executive summary wrapper.
 
-def generate_executive_summary(event: dict) -> str:
-    try:
-        required_vars = [
-            "AZURE_OPENAI_API_KEY",
-            "AZURE_OPENAI_ENDPOINT",
-            "AZURE_OPENAI_DEPLOYMENT",
-        ]
+    The private SAMSON implementation dynamically
+    selects between deterministic and AI-assisted
+    executive briefing workflows based on
+    organizational governance requirements.
+    """
 
-        if all(os.getenv(var) for var in required_vars):
-            return generate_ai_summary(event)
+    ai_enabled = os.getenv(
+        "ENABLE_AI_SUMMARIZATION",
+        "false",
+    ).lower() == "true"
 
-    except Exception as e:
-        print(f"[WARN] Azure OpenAI summary failed: {e}")
+    if ai_enabled:
+        return generate_ai_summary(event)
 
     return generate_deterministic_summary(event)

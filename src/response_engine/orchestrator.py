@@ -1,5 +1,3 @@
-from dotenv import load_dotenv
-
 from src.normalizer.governance_parser import normalize_event
 from src.risk_engine.governance_risk import calculate_governance_risk
 from src.risk_engine.blast_radius import calculate_blast_radius
@@ -9,10 +7,16 @@ from src.response_engine.approval_workflow import create_approval_payload
 from src.risk_engine.executive_summary import generate_executive_summary
 from src.notification_engine.sns_notifier import publish_notification
 from src.notification_engine.splunk_notifier import publish_to_splunk
-load_dotenv()
 
 
 def _classify_severity(risk_score: int) -> str:
+    """
+    Public severity classifier.
+
+    Private implementation may include additional business context,
+    control weighting, identity impact, and environment-aware scoring.
+    """
+
     if risk_score >= 90:
         return "CRITICAL"
     if risk_score >= 80:
@@ -23,6 +27,25 @@ def _classify_severity(risk_score: int) -> str:
 
 
 def orchestrate_security_event(event: dict) -> dict:
+    """
+    Public showcase implementation of the SAMSON orchestration pipeline.
+
+    NOTE:
+    The private SAMSON implementation includes:
+    - multi-cloud telemetry normalization
+    - deterministic governance risk scoring
+    - blast-radius and privilege-context evaluation
+    - compliance control mapping
+    - approval-aware response workflows
+    - Azure OpenAI executive summarization
+    - SNS notification routing
+    - Splunk forwarding
+    - audit/evidence preservation logic
+
+    This sanitized version preserves the end-to-end architecture flow
+    while protecting proprietary security logic.
+    """
+
     normalized = normalize_event(event)
 
     risk_score = calculate_governance_risk(
@@ -35,10 +58,8 @@ def orchestrate_security_event(event: dict) -> dict:
     severity = _classify_severity(risk_score)
 
     blast_radius = calculate_blast_radius(
-        resource_type="iam_user"
-        if normalized.provider == "aws"
-        else "service_principal",
-        privilege_level="admin" if risk_score >= 80 else "standard",
+        resource_type="sanitized-resource",
+        privilege_level="sanitized-privilege",
     )
 
     controls = map_controls(normalized.event_name)
@@ -51,10 +72,8 @@ def orchestrate_security_event(event: dict) -> dict:
     approval = create_approval_payload(
         event_name=normalized.event_name,
         provider=normalized.provider,
-        risk_score=risk_score,
+        severity=severity,
         recommendations=recommendations,
-        actor=normalized.actor,
-        resource=normalized.resource,
     )
 
     summary_input = {
@@ -80,12 +99,10 @@ def orchestrate_security_event(event: dict) -> dict:
         "approval": approval,
         "approval_status": approval["status"],
         "executive_summary": executive_summary,
+        "public_showcase": True,
     }
 
-    notification_result = publish_notification(enriched_event)
-    splunk_result = publish_to_splunk(enriched_event)
-
-    enriched_event["notification_result"] = notification_result
-    enriched_event["splunk_result"] = splunk_result
+    enriched_event["notification_result"] = publish_notification(enriched_event)
+    enriched_event["splunk_result"] = publish_to_splunk(enriched_event)
 
     return enriched_event
