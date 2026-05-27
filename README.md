@@ -277,7 +277,7 @@ Rather than relying on isolated point solutions, security-relevant activity from
 
 This event-driven approach improves scalability, reduces operational coupling, and allows governance logic to evolve independently from ingestion sources.
 
-<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Lambda_function3.png style="width:800px;">
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Lambda_function3%20-%20Copy.png style="width:800px;">
 
 ### Multi-Cloud Governance & Policy Enforcement
 Azure Policy enforcement used within SAMSON to apply centralized governance guardrails across scoped cloud resources and management groups.
