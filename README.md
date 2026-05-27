@@ -228,6 +228,21 @@ Executive alert distributed through Amazon SNS to provide immediate visibility i
 ### Azure OpenAI Deployment Validation
 <img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Azure_OpenAI_deployment_screen3.png style="width:800px;">
 
+### Terraform Module Architecture
+SAMSON was intentionally designed using a modular Terraform architecture to support scalability, governance separation, maintainability, and multi-cloud extensibility. Rather than deploying a monolithic stack, each capability was separated into reusable infrastructure modules aligned to specific security, governance, telemetry, resilience, and operational domains.
+
+### Key Architectural Decisions
+
+- Modular Terraform architecture for maintainability and scalability
+- Separate governance, telemetry, DR, and AI responsibilities into isolated modules
+- Multi-cloud alignment between AWS Organizations and Azure Management Groups
+- Deterministic risk scoring separated from AI summarization logic
+- DR components intentionally isolated to support pilot-light recovery strategy
+- Evidence storage separated from processing pipelines for forensic integrity
+
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/TF_modules_AWS.png style="width:800px;">
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/TF_modules_Azure.png style="width:800px;">
+
 insert Terraform module structure screenshot
 insert Splunk dashboard screenshot
 insert AWS EventBridge / Lambda flow screenshot
