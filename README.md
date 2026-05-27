@@ -206,14 +206,125 @@ An AWS IAM access key is created unexpectedly.
 
 ---
 ## Proof of Execution
-insert terminal showing successful executive summary generation
-insert SNS executive email notification
-insert Azure OpenAI deployment screen
-insert Terraform module structure screenshot
-insert Splunk dashboard screenshot
-insert AWS EventBridge / Lambda flow screenshot
-insert Azure governance / policy screenshot
-insert DR / replication architecture screenshot
+
+### Event Processing Workflow
+Successful end-to-end orchestration of a high-risk AWS governance event through the SAMSON risk intelligence pipeline.
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Terminal_Summary1.png style="width:800px;">
+
+### AI Executive Intelligence
+Azure OpenAI-generated executive narrative providing leadership-focused risk context and remediation guidance.
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Terminal_Summary2.png style="width:800px;">
+
+### Notification & Delivery
+Executive alert distributed through Amazon SNS to provide immediate visibility into high-risk governance activity.
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Final_SNS_W_Summary.png style="width:800px;">
+
+### Enterprise AI Resource Provisioning
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Azure_OpenAI_deployment_screen2.png style="width:800px;">
+
+### AI Executive Intelligence Layer
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Azure_OpenAI_deployment_screen8.png style="width:800px;">
+
+### Azure OpenAI Deployment Validation
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Azure_OpenAI_deployment_screen3.png style="width:800px;">
+
+### Terraform Module Architecture
+SAMSON was intentionally designed using a modular Terraform architecture to support scalability, governance separation, maintainability, and multi-cloud extensibility. Rather than deploying a monolithic stack, each capability was separated into reusable infrastructure modules aligned to specific security, governance, telemetry, resilience, and operational domains.
+
+### Key Architectural Decisions
+
+- Modular Terraform architecture for maintainability and scalability
+- Separate governance, telemetry, DR, and AI responsibilities into isolated modules
+- Multi-cloud alignment between AWS Organizations and Azure Management Groups
+- Deterministic risk scoring separated from AI summarization logic
+- DR components intentionally isolated to support pilot-light recovery strategy
+- Evidence storage separated from processing pipelines for forensic integrity
+
+### _AWS:_
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/TF_modules_AWS.png style="width:600px; height:1800px;">
+
+
+### _Azure:_
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/TF_modules_Azure.png style="width:600px; height:1900px;">
+
+
+## Splunk Dashboards
+
+### Executive Dashboard
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Executive_DB.png style="width:800px;">
+
+### Detection Analytics Dashboard
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Detection_DB.png style="width:800px;">
+
+### Compliance Intelligence Dashboard
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Compliance_DB.png style="width:800px;">
+
+### Resilience & Disaster Recovery Dashboard
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Replication_Success.png style="width:800px;">
+
+### EventBridge & Lambda flow
+SAMSON uses Amazon EventBridge as a centralized governance and telemetry orchestration layer.
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/EventBridge_eventbus.png style="width:800px;">
+
+Rather than relying on isolated point solutions, security-relevant activity from AWS services is routed through a centralized event bus architecture that enables:
+
+- deterministic risk analysis
+- standardized normalization
+- policy-aware response workflows
+- forensic evidence retention
+- SIEM forwarding
+- executive-level intelligence generation
+
+This event-driven approach improves scalability, reduces operational coupling, and allows governance logic to evolve independently from ingestion sources.
+
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Lambda_function3%20-%20Copy.png style="width:800px;">
+
+### Multi-Cloud Governance & Policy Enforcement
+Azure Policy enforcement used within SAMSON to apply centralized governance guardrails across scoped cloud resources and management groups.
+
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Azure_Policy.png style="width:800px;">
+
+As organizations scale across multiple cloud providers, governance drift becomes one of the largest operational and security risks.
+
+Security standards that begin as centralized policies often become inconsistent across subscriptions, accounts, development teams, and environments over time.
+
+SAMSON addresses this challenge through policy-driven governance enforcement using:
+
+- Azure Policy initiatives
+- AWS Service Control Policies (SCPs)
+- management group hierarchy enforcement
+- identity-aware governance controls
+- centralized telemetry validation
+- compliance-aligned control mapping
+
+This allows organizations to standardize governance controls while reducing manual operational overhead and minimizing configuration drift across cloud environments.
+
+### Enterprise Resilience & Disaster Recovery
+Cross-region S3 evidence replication used to preserve governance telemetry and forensic evidence during regional disruption scenarios.
+
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/S32.png style="width:800px;">
+
+SAMSON was designed with a resilience-first architecture to ensure governance visibility and forensic evidence preservation during regional outages or operational disruption events.
+
+Security telemetry, governance evidence, and operational artifacts are replicated across regions to reduce single points of failure and support continuity of operations.
+
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/S33.png style="width:800px;">
+
+Terraform state preservation used to support infrastructure rehydration and recovery automation workflows.
+
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/S31.png style="width:800px;">
+
+Rather than treating disaster recovery as a documentation exercise, SAMSON integrates recovery-aware architecture patterns directly into the platform design.
+
+This includes:
+- cross-region evidence replication
+- encrypted backup retention
+- infrastructure-as-code recovery workflows
+- Terraform state preservation
+- pilot-light recovery architecture
+- recovery automation runbooks
+
+The objective is not only service restoration, but also governance continuity and forensic survivability during high-impact operational events.
 
 ---
 
