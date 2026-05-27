@@ -247,7 +247,22 @@ SAMSON was intentionally designed using a modular Terraform architecture to supp
 ### _Azure_
 <img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/TF_modules_Azure.png style="width:600px; height:1800px;">
 
-insert Terraform module structure screenshot
+
+## Splunk Dashboards
+
+### Executive Dashboard
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Executive_DB.png style="width:700px;">
+
+### Detection Analytics Dashboard
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Detection_DB.png style="width:700px;">
+
+### Compliance Intelligence Dashboard
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Compliance_DB.png style="width:700px;">
+
+### Resilience & Disaster Recovery Dashboard
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Replication_Success.png style="width:700px;">
+
+
 insert Splunk dashboard screenshot
 insert AWS EventBridge / Lambda flow screenshot
 insert Azure governance / policy screenshot
