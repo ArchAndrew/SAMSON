@@ -215,7 +215,10 @@ Successful end-to-end orchestration of a high-risk AWS governance event through 
 Azure OpenAI-generated executive narrative providing leadership-focused risk context and remediation guidance.
 <img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Terminal_Summary2.png style="width:800px;">
 
-insert SNS executive email notification
+### Notification & Delivery
+Executive alert distributed through Amazon SNS to provide immediate visibility into high-risk governance activity.
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Final_SNS_W_Summary.png style="width:800px;">
+
 insert Azure OpenAI deployment screen
 insert Terraform module structure screenshot
 insert Splunk dashboard screenshot
