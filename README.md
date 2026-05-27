@@ -206,7 +206,8 @@ An AWS IAM access key is created unexpectedly.
 
 ---
 ## Proof of Execution
-insert terminal showing successful executive summary generation
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Terminal_Summary1.png style="width:700px;">
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Terminal_Summary2.png style="width:700px;">
 insert SNS executive email notification
 insert Azure OpenAI deployment screen
 insert Terraform module structure screenshot
