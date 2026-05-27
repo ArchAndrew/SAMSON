@@ -240,7 +240,7 @@ SAMSON was intentionally designed using a modular Terraform architecture to supp
 - DR components intentionally isolated to support pilot-light recovery strategy
 - Evidence storage separated from processing pipelines for forensic integrity
 
-<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/TF_modules_AWS.png style="width:600px; height:600px;">
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/TF_modules_AWS.png style="width:600px; height:900px;">
 <img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/TF_modules_Azure.png style="width:600px;">
 
 insert Terraform module structure screenshot
