@@ -241,9 +241,10 @@ SAMSON was intentionally designed using a modular Terraform architecture to supp
 - Evidence storage separated from processing pipelines for forensic integrity
 
 **AWS**
-<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/TF_modules_AWS.png style="width:600px; height:1700px;">
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/TF_modules_AWS.png style="width:600px; height:1800px;">
+
 **Azure**
-<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/TF_modules_Azure.png style="width:600px; height:1700px;">
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/TF_modules_Azure.png style="width:600px; height:1800px;">
 
 insert Terraform module structure screenshot
 insert Splunk dashboard screenshot
