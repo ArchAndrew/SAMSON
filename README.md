@@ -240,27 +240,27 @@ SAMSON was intentionally designed using a modular Terraform architecture to supp
 - DR components intentionally isolated to support pilot-light recovery strategy
 - Evidence storage separated from processing pipelines for forensic integrity
 
-### _AWS_
+### _AWS:_
 <img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/TF_modules_AWS.png style="width:600px; height:1800px;">
 
 
-### _Azure_
+### _Azure:_
 <img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/TF_modules_Azure.png style="width:600px; height:1800px;">
 
 
 ## Splunk Dashboards
 
 ### Executive Dashboard
-<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Executive_DB.png style="width:700px;">
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Executive_DB.png style="width:800px;">
 
 ### Detection Analytics Dashboard
-<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Detection_DB.png style="width:700px;">
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Detection_DB.png style="width:800px;">
 
 ### Compliance Intelligence Dashboard
-<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Compliance_DB.png style="width:700px;">
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Compliance_DB.png style="width:800px;">
 
 ### Resilience & Disaster Recovery Dashboard
-<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Replication_Success.png style="width:700px;">
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Replication_Success.png style="width:800px;">
 
 
 insert Splunk dashboard screenshot
