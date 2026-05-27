@@ -243,6 +243,7 @@ SAMSON was intentionally designed using a modular Terraform architecture to supp
 ### _AWS_
 <img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/TF_modules_AWS.png style="width:600px; height:1800px;">
 
+
 ### _Azure_
 <img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/TF_modules_Azure.png style="width:600px; height:1800px;">
 
