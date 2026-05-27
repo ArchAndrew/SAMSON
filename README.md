@@ -299,9 +299,32 @@ SAMSON addresses this challenge through policy-driven governance enforcement usi
 
 This allows organizations to standardize governance controls while reducing manual operational overhead and minimizing configuration drift across cloud environments.
 
+### Enterprise Resilience & Disaster Recovery
+Cross-region S3 evidence replication used to preserve governance telemetry and forensic evidence during regional disruption scenarios.
 
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/S32.png style="width:800px;">
 
-insert DR / replication architecture screenshot
+SAMSON was designed with a resilience-first architecture to ensure governance visibility and forensic evidence preservation during regional outages or operational disruption events.
+
+Security telemetry, governance evidence, and operational artifacts are replicated across regions to reduce single points of failure and support continuity of operations.
+
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/S33.png style="width:800px;">
+
+Terraform state preservation used to support infrastructure rehydration and recovery automation workflows.
+
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/S31.png style="width:800px;">
+
+Rather than treating disaster recovery as a documentation exercise, SAMSON integrates recovery-aware architecture patterns directly into the platform design.
+
+This includes:
+- cross-region evidence replication
+- encrypted backup retention
+- infrastructure-as-code recovery workflows
+- Terraform state preservation
+- pilot-light recovery architecture
+- recovery automation runbooks
+
+The objective is not only service restoration, but also governance continuity and forensic survivability during high-impact operational events.
 
 ---
 
