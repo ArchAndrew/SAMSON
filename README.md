@@ -206,8 +206,15 @@ An AWS IAM access key is created unexpectedly.
 
 ---
 ## Proof of Execution
-<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Terminal_Summary1.png style="width:700px;">
-<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Terminal_Summary2.png style="width:700px;">
+
+### Event Processing Workflow
+Successful end-to-end orchestration of a high-risk AWS governance event through the SAMSON risk intelligence pipeline.
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Terminal_Summary1.png style="width:800px;">
+
+### AI Executive Intelligence
+Azure OpenAI-generated executive narrative providing leadership-focused risk context and remediation guidance.
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Terminal_Summary2.png style="width:800px;">
+
 insert SNS executive email notification
 insert Azure OpenAI deployment screen
 insert Terraform module structure screenshot
