@@ -219,7 +219,15 @@ Azure OpenAI-generated executive narrative providing leadership-focused risk con
 Executive alert distributed through Amazon SNS to provide immediate visibility into high-risk governance activity.
 <img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Final_SNS_W_Summary.png style="width:800px;">
 
-insert Azure OpenAI deployment screen
+### Enterprise AI Resource Provisioning
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Azure_OpenAI_deployment_screen2.png style="width:800px;">
+
+### AI Executive Intelligence Layer
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Azure_OpenAI_deployment_screen8.png style="width:800px;">
+
+### Azure OpenAI Deployment Validation
+<img src= https://github.com/ArchAndrew/SAMSON/blob/main/screenshots/Azure_OpenAI_deployment_screen3.png style="width:800px;">
+
 insert Terraform module structure screenshot
 insert Splunk dashboard screenshot
 insert AWS EventBridge / Lambda flow screenshot
