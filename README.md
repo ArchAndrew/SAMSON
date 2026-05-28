@@ -27,7 +27,7 @@ Security teams often generate thousands of technical alerts, but executives and 
 SAMSON bridges the gap between technical telemetry and executive decision-making by transforming raw governance events into actionable security intelligence.
 
 ---
-## Hers's The Problem
+## Here's The Problem
 
 Modern enterprises operate across multiple cloud providers, identities, automation pipelines, and distributed teams.
 
